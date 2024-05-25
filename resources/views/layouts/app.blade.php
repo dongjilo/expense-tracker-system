@@ -9,7 +9,6 @@
     <link href="{{ asset('sb-admin-2/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('sb-admin-2/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-{{--    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">--}}
 </head>
 <body id="page-top">
 <!-- Page Wrapper -->
@@ -59,7 +58,6 @@
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('sb-admin-2/js/sb-admin-2.min.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
-{{--<script src="{{ asset('js/bootstrap.js') }}"></script>--}}
 
 </body>
 </html>
