@@ -27,8 +27,8 @@ class UserController extends Controller
         $request->validate([
            'name' => 'required|string|max:255',
            'email' => 'required|string|email|max:255',
-           'old_password' => 'required|string|min:3',
-           'new_password' => 'required|string|min:3|confirmed',
+           'old_password' => 'nullable|string|min:3',
+           'new_password' => 'nullable|string|min:3|confirmed',
         ]);
 
         if ($request->filled('old_password')) {
@@ -53,7 +53,7 @@ class UserController extends Controller
 
     public function destroy()
     {
-// cant destory user can we
+        // cant destory user can we
     }
 
 }
