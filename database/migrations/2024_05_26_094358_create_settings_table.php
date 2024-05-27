@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -12,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::unprepared("
-            CREATE PROCEDURE GetUserExpenses (IN userID INT)
-            BEGIN
-                SELECT * FROM expenses WHERE user_id = userId;
-            END
-        ");
+        Schema::create('settings', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
+            $table->foreignId('currency_id')->constrained()->onDelete('restrict');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('get_user_expenses_procedure');
+        Schema::dropIfExists('settings');
     }
 };
