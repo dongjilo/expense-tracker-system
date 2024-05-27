@@ -16,7 +16,7 @@
                                 @if (session('success'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert">
                                         {{ session('success') }}
-                                        <button type="button" class="btn-close" aria-label="Close" onclick="dismissAlert('successAlert')"></button>
+                                        <button type="button" class="btn-close" aria-label="Close" onclick="dismissAlert('successAlert')"><span aria-hidden="true">&times;</span></button>
                                     </div>
                                 @endif
                                 @if ($errors->any())

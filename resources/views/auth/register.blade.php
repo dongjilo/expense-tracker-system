@@ -13,6 +13,16 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                                 </div>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" id="errorAlert">
+                                        <ul class="list-unstyled mb-0">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                        <button type="button" class="close" aria-label="Close" onclick="dismissAlert('errorAlert')"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                @endif
                                 <form method="POST" action="{{ route('register') }}">
                                     @csrf
                                     <div class="form-group">
