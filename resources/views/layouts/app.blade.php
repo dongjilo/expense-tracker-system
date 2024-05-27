@@ -76,14 +76,14 @@
 <script src="{{ asset('sb-admin-2/js/demo/chart-pie-demo.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-<script>
 
+<script>
     const options = {
-        bottom: '64px', // default: '32px'
+        bottom: '32px', // default: '32px'
         right: 'unset', // default: '32px'
-        left: '32px', // default: 'unset'
+        left: '24px', // default: 'unset'
         time: '0.5s', // default: '0.3s'
-        mixColor: '#fff', // default: '#fff'
+        mixColor: '#f9f9f9', // default: '#fff'
         backgroundColor: '#fff',  // default: '#fff'
         buttonColorDark: '#100f2c',  // default: '#100f2c'
         buttonColorLight: '#fff', // default: '#fff'
@@ -97,7 +97,6 @@
 
     window.addEventListener('load', addDarkmodeWidget);
 </script>
-
 
 </body>
 </html>
