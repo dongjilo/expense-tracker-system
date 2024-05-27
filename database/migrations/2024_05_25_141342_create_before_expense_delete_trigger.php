@@ -19,7 +19,7 @@ return new class extends Migration
             BEGIN
                 INSERT INTO expense_deletion_logs (expense_id, user_id, category_id, amount, description, deleted_at)
                 VALUES (OLD.id, OLD.user_id, OLD.category_id, OLD.amount, OLD.description, NOW());
-            END
+            END;
         ");
     }
 
@@ -28,6 +28,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('before_expense_delete_trigger');
+        DB::unprepared("
+            DROP TRIGGER IF EXISTS before_expenses_delete
+        ");
     }
 };

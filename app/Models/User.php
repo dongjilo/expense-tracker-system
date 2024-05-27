@@ -26,4 +26,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Expense::class);
     }
+
+    public function userExpensesTotal()
+    {
+        return $this->hasOne(UserExpensesTotal::class);
+    }
+
+    public function settings()
+    {
+        return $this->hasMany(Setting::class);
+    }
+
+    public function goals()
+    {
+        return $this->hasMany(Goal::class);
+    }
+
 }

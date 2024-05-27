@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('expense_deletion_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('expense_id')->constrained();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('category_id')->constrained();
+            $table->unsignedBigInteger('expense_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
             $table->decimal('amount', 10, 2);
             $table->string('description')->nullable();
             $table->timestamp('deleted_at');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('expense_deletion_logs');
     }
 };

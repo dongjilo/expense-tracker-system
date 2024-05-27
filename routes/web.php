@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\GoalController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [UserController::class, 'update'])->name('profile.update');
 
-
-   Route::get('expenses/{userId}', [ExpenseController::class, 'index'])->name('expenses.index');
-   Route::post('expenses', [ExpenseController::class, 'store'])->name('expenses.store');
-   Route::delete('expenses/{id}', [ExpenseController::class, 'destroy'])->name('expenses.destroy');
+    Route::resource('expenses', ExpenseController::class)->except(['show']);
+    Route::resource('categories',CategoryController::class)->except('show');
+    Route::resource('goals', GoalController::class)->except(['show']);
 });

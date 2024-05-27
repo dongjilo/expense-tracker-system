@@ -23,40 +23,46 @@
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{ route('categories.index') }}" class="nav-link">
             <i class="fas fa-fw fa-paperclip"></i>
             <span>Categories</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{ route('expenses.index') }}" class="nav-link">
             <i class="fas fa-fw fa-credit-card"></i>
             <span>Expenses</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a href="#" class="nav-link">
-            <i class="fas fa-fw fa-flag"></i>
-            <span>Set a Goal</span>
+        <a href="{{ route('goals.index') }}" class="nav-link">
+            <i class="fas fa-fw fa-bullseye"></i>
+            <span>Goals</span>
         </a>
     </li>
 
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>collapsable</span>
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+           aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-plus"></i>
+            <span>Add</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="#">Buttons</a>
-                <a class="collapse-item" href="#">Cards</a>
+                <h6 class="collapse-header">Add to:</h6>
+                <a class="collapse-item" href="{{ route('categories.create') }}">Category</a>
+                <a class="collapse-item" href="{{ route('expenses.create') }}">Expense</a>
+                <a class="collapse-item" href="{{ route('goals.create') }}">Goal</a>
             </div>
         </div>
     </li>
+
+
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

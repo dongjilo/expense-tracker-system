@@ -24,6 +24,20 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="currency_id">Currency</label>
+                                <select class="form-control" id="currency_id" name="currency_id" required>
+                                    @foreach($currencies as $currency)
+                                        <option value="{{ $currency->id }}" {{ optional($user->settings->first())->currency_id == $currency->id ? 'selected' : '' }}>
+                                            {{ $currency->name }} ({{ $currency->symbol }})
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <hr>
+                            <p>Change password</p>
+
+                            <div class="form-group">
                                 <label for="old_password">Old Password</label>
                                 <input type="password" class="form-control" id="old_password" name="old_password">
                             </div>
@@ -37,6 +51,7 @@
                                 <label for="new_password_confirmation">Confirm New Password</label>
                                 <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation">
                             </div>
+
 
                             <button type="submit" class="btn btn-primary">Update Profile</button>
                         </form>

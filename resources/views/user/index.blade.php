@@ -20,6 +20,11 @@
                             <input type="email" class="form-control" id="email" value="{{ $user->email }}" readonly>
                         </div>
 
+                        <div class="form-group">
+                            <label for="currency">Currency</label>
+                            <input type="text" id="currency" class="form-control" value="{{ $user->settings->first()->currency->name }} ({{ $user->settings->first()->currency->symbol }})" readonly >
+                        </div>
+
                         <!-- Add more fields as needed -->
 
                         <a href="{{ route('profile.edit') }}" class="btn btn-primary">Edit Profile</a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Currency;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $user = Auth::user();
-        return view('user.edit', ['user' => $user]);
+        $currencies = Currency::all();
+        return view('user.edit', ['user' => $user, 'currencies' => $currencies]);
     }
 
     public function update(Request $request)
@@ -29,6 +31,7 @@ class UserController extends Controller
            'email' => 'required|string|email|max:255',
            'old_password' => 'nullable|string|min:3',
            'new_password' => 'nullable|string|min:3|confirmed',
+           'currency_id' => 'required|exists:currencies,id'
         ]);
 
         if ($request->filled('old_password')) {
@@ -47,6 +50,11 @@ class UserController extends Controller
         }
 
         $user->update($userData);
+
+        $user->settings()->updateOrCreate(
+            ['user_id' => $user->id],
+            ['currency_id' => $request->currency_id]
+        );
 
         return redirect()->route('profile.show')->with('success', 'Profile updated sucessfully');
     }
