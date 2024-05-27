@@ -20,120 +20,58 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-
-
-        Currency::create([
-            'name' => 'United States Dollar',
-            'code' => 'USD',
-            'symbol' => '$',
+        Currency::factory()->createMany([
+            ['name' => 'United States Dollar', 'code' => 'USD', 'symbol' => '$'],
+            ['name' => 'Philippine Peso', 'code' => 'PHP', 'symbol' => '₱'],
+            ['name' => 'Euro', 'code' => 'EUR', 'symbol' => '€'],
+            ['name' => 'British Pound Sterling', 'code' => 'GBP', 'symbol' => '£'],
+            ['name' => 'Japanese Yen', 'code' => 'JPY', 'symbol' => '¥'],
         ]);
 
-        Currency::create([
-            'name' => 'Philippine Peso',
-            'code' => 'PHP',
-            'symbol' => '₱',
-        ]);
-
-        Currency::create([
-            'name' => 'Euro',
-            'code' => 'EUR',
-            'symbol' => '€',
-        ]);
-
-        Currency::create([
-            'name' => 'British Pound Sterling',
-            'code' => 'GBP',
-            'symbol' => '£',
-        ]);
-
-        Currency::create([
-            'name' => 'Japanese Yen',
-            'code' => 'JPY',
-            'symbol' => '¥',
-        ]);
-
-
-        User::factory()->create([
+        // Create a specific user
+        $user = User::factory()->create([
             'name' => 'Budget Buddy',
             'email' => 'buddy@e.cc',
             'password' => Hash::make('123')
         ]);
 
-        Category::create([
-            'name' => 'Work'
+        // Create categories
+        Category::factory()->createMany([
+            ['name' => 'Work'],
+            ['name' => 'School'],
+            ['name' => 'Essentials'],
+            ['name' => 'Food'],
+            ['name' => 'Hobby'],
         ]);
 
-        Category::create([
-            'name' => 'School'
+        // Create expenses for the user
+        Expense::factory()->createMany([
+            ['description' => 'Lunch', 'amount' => 135, 'category_id' => 4, 'date' => '2024-02-02', 'user_id' => $user->id],
+            ['description' => 'Dinner', 'amount' => 196, 'category_id' => 4, 'date' => '2024-02-02', 'user_id' => $user->id],
+            ['description' => 'In-game cosmetics', 'amount' => 750, 'category_id' => 5, 'date' => '2024-03-26', 'user_id' => $user->id],
+            ['description' => 'IT223 project', 'amount' => 1550, 'category_id' => 2, 'date' => '2024-05-27', 'user_id' => $user->id],
+            ['description' => 'Work things', 'amount' => 3679, 'category_id' => 1, 'date' => '2024-01-29', 'user_id' => $user->id],
+            ['description' => 'Electricity bill', 'amount' => 3998, 'category_id' => 3, 'date' => '2024-01-04', 'user_id' => $user->id],
+            ['description' => 'Water bill', 'amount' => 2150, 'category_id' => 3, 'date' => '2024-01-04', 'user_id' => $user->id],
+            ['description' => 'Electricity bill', 'amount' => 4089, 'category_id' => 3, 'date' => '2024-02-04', 'user_id' => $user->id],
+            ['description' => 'Water bill', 'amount' => 2111, 'category_id' => 3, 'date' => '2024-02-04', 'user_id' => $user->id],
+            ['description' => 'Electricity bill', 'amount' => 4110, 'category_id' => 3, 'date' => '2024-03-04', 'user_id' => $user->id],
+            ['description' => 'Water bill', 'amount' => 2190, 'category_id' => 3, 'date' => '2024-03-04', 'user_id' => $user->id],
+            ['description' => 'Electricity bill', 'amount' => 4898, 'category_id' => 3, 'date' => '2024-04-04', 'user_id' => $user->id],
+            ['description' => 'Water bill', 'amount' => 2598, 'category_id' => 3, 'date' => '2024-04-04', 'user_id' => $user->id],
+            ['description' => 'Electricity bill', 'amount' => 3998, 'category_id' => 3, 'date' => '2024-05-04', 'user_id' => $user->id],
+            ['description' => 'Water bill', 'amount' => 2248, 'category_id' => 3, 'date' => '2024-05-04', 'user_id' => $user->id],
+            ['description' => 'Skin care materials', 'amount' => 553, 'category_id' => 3, 'date' => '2024-05-14', 'user_id' => $user->id],
         ]);
 
-        Category::create([
-            'name' => 'Essentials'
-        ]);
-
-        Category::create([
-            'name' => 'Food'
-        ]);
-
-        Category::create([
-            'name' => 'Hobby'
-        ]);
-
-        Expense::create([
-           'description' => 'Lunch',
-           'amount'  => '135',
-           'category_id' => '4',
-           'date' => '2024-02-02',
-           'user_id' => '1',
-        ]);
-
-        Expense::create([
-            'description' => 'Dinner',
-            'amount'  => '196',
-            'category_id' => '4',
-            'date' => '2024-02-02',
-            'user_id' => '1',
-        ]);
-
-        Expense::create([
-            'description' => 'In-game cosmetics',
-            'amount'  => '750',
-            'category_id' => '5',
-            'date' => '2024-03-26',
-            'user_id' => '1',
-        ]);
-
-        Expense::create([
-            'description' => 'Electricity bill',
-            'amount'  => '4319',
-            'category_id' => '3',
-            'date' => '2024-04-04',
-            'user_id' => '1',
-        ]);
-
-        Expense::create([
-            'description' => 'Water bill',
-            'amount'  => '2396',
-            'category_id' => '3',
-            'date' => '2024-04-04',
-            'user_id' => '1',
-        ]);
-
-        Expense::create([
-            'description' => 'Skin care materials',
-            'amount'  => '553',
-            'category_id' => '3',
-            'date' => '2024-05-14',
-            'user_id' => '1',
-        ]);
-
-        Goal::create([
-            'target_amount' => '13000',
-            'current_amount' => '3400',
+        // Create a goal for the user
+        Goal::factory()->create([
+            'target_amount' => 13000,
+            'current_amount' => 3400,
             'target_date' => '2025-12-12',
-            'user_id' => '1',
+            'user_id' => $user->id,
         ]);
+
+
     }
 }
