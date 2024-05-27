@@ -13,6 +13,7 @@
         rel="stylesheet">
     <link href="{{ asset('sb-admin-2/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dark-mode-custom.css') }}" rel="stylesheet">
 </head>
 <body id="page-top">
 <!-- Page Wrapper -->
@@ -73,6 +74,30 @@
 <script src="{{ asset('sb-admin-2/js/demo/datatables-demo.js') }}"></script>
 <script src="{{ asset('sb-admin-2/js/demo/chart-bar-demo.js') }}"></script>
 <script src="{{ asset('sb-admin-2/js/demo/chart-pie-demo.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+
+    const options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#fff', // default: '#fff'
+        backgroundColor: '#fff',  // default: '#fff'
+        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '🌓', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+
+    const darkmode = new Darkmode(options);
+    darkmode.showWidget();
+
+    window.addEventListener('load', addDarkmodeWidget);
+</script>
+
 
 </body>
 </html>

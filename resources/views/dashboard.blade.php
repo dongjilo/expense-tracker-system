@@ -155,21 +155,8 @@
                                 data-values='@json($categoryTotals)'>
                         </canvas>
                     </div>
-                    <div class="mt-4 text-center small">
-                        @foreach($categoryNames as $index => $category)
-                            <span class="mr-2">
-                                <i class="fas fa-circle" style="color: {{ ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796', '#fd7e14', '#20c997', '#fd7e14', '#20c997'][$index % 10] }}"></i> {{ $category }}
-                            </span>
-                        @endforeach
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-    @push('scripts')
-        <script src="{{ asset('sb-admin-2/js/demo/chart-bar-demo.js') }}"></script>
-    @endpush
 @endsection
