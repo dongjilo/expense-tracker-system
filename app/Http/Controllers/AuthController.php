@@ -62,29 +62,31 @@ class AuthController extends Controller
     public function dashboard()
     {
         $user = Auth::user();
-        $summary = DB::table('UserExpensesSummary')
-            ->where('user_id', $user->id)
-            ->first();
+        $userId = $user->id;
+
+        $summary = DB::select('CALL GetUserExpensesSummary(?)', [$userId]);
+        $summary = $summary ? $summary[0] : null;
+
         $goal = $user->goals()->orderBy('created_at', 'desc')->first();
 
-        // Get monthly expenses for the current year
         $year = date('Y');
-        $monthlyExpenses = DB::table('MonthlyUserExpenses')
-            ->select('month', 'total_expenses')
-            ->where('user_id', $user->id)
-            ->where('year', $year)
-            ->orderBy('month')
-            ->get();
+        $monthlyExpenses = DB::select('CALL GetMonthlyUserExpenses(?, ?)', [$userId, $year]);
 
         $months = [];
         $expenses = [];
+        // populate months and total expenses per month
         for ($i = 1; $i <= 12; $i++) {
             $months[] = date("F", mktime(0, 0, 0, $i, 1));
-            $expense = $monthlyExpenses->firstWhere('month', $i);
+            $expense = collect($monthlyExpenses)->firstWhere('month', $i);
             $expenses[] = $expense ? $expense->total_expenses : 0;
         }
 
+        $categoryExpenses = DB::select('CALL GetUserCategoryExpenses(?)', [$userId]);
 
-        return view('dashboard', compact('goal', 'summary', 'months', 'expenses'));
+        $categoryNames = collect($categoryExpenses)->pluck('category_name');
+        $categoryTotals = collect($categoryExpenses)->pluck('total_expenses');
+
+        return view('dashboard', compact('goal', 'summary', 'months', 'expenses', 'categoryNames', 'categoryTotals'));
     }
+
 }

@@ -72,6 +72,7 @@
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('sb-admin-2/js/demo/datatables-demo.js') }}"></script>
 <script src="{{ asset('sb-admin-2/js/demo/chart-bar-demo.js') }}"></script>
+<script src="{{ asset('sb-admin-2/js/demo/chart-pie-demo.js') }}"></script>
 
 </body>
 </html>
