@@ -6,6 +6,8 @@ return new class extends Migration
 {
     public function up(): void
     {
+        DB::statement("DROP VIEW IF EXISTS UserCategoryExpenses");
+
         DB::statement("
             CREATE VIEW UserCategoryExpenses AS
             SELECT
