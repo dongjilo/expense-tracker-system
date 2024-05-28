@@ -11,6 +11,8 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+
+
     <link href="{{ asset('sb-admin-2/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dark-mode-custom.css') }}" rel="stylesheet">
@@ -72,8 +74,8 @@
 <script src="{{ asset('sb-admin-2/js/sb-admin-2.min.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('sb-admin-2/js/demo/datatables-demo.js') }}"></script>
-<script src="{{ asset('sb-admin-2/js/demo/chart-bar-demo.js') }}"></script>
-<script src="{{ asset('sb-admin-2/js/demo/chart-pie-demo.js') }}"></script>
+@stack('scripts')
+
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 

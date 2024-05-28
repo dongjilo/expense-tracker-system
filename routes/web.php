@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\UserController;
@@ -14,8 +15,12 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-   Route::get('/', [AuthController::class, 'dashboard']);
-   Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/fetch-total-monthly-expenses', [DashboardController::class, 'fetchTotalMonthlyExpenses'])->name('dashboard.fetchTotalMonthlyExpenses');
+    Route::get('/dashboard/fetch-goal', [DashboardController::class, 'fetchGoal'])->name('dashboard.fetchGoal');
+    Route::get('/dashboard/fetch-monthly-expenses', [DashboardController::class, 'fetchMonthlyExpenses'])->name('dashboard.fetchMonthlyExpenses');
+    Route::get('/dashboard/fetch-user-category-expenses', [DashboardController::class, 'fetchUserCategoryExpenses'])->name('dashboard.fetchUserCategoryExpenses');
 
     Route::get('/profile', [UserController::class, 'show'])->name('profile.show');
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');

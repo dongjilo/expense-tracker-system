@@ -13,22 +13,12 @@
         <!-- Expenses (Monthly)-->
         <div class="col-xl-6 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
+                <div class="card-body" id="monthly-expenses-card">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-md font-weight-bold text-primary text-uppercase mb-1">
                                 Expense this month
                             </div>
-                            @php
-                                $currentYear = date('Y');
-                                $currentMonth = date('m');
-
-                                $monthlyExpenses = DB::select('CALL GetMonthlyExpenses(?, ?, ?)', [Auth::id(), $currentYear, $currentMonth]);
-                                $totalMonthlyExpenses = isset($monthlyExpenses[0]->total_expenses) ? $monthlyExpenses[0]->total_expenses : 0;
-
-                                $settings = Auth::user()->settings->first();
-                                $currencySymbol = optional($settings->currency)->symbol ?? '';
-                            @endphp
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 {{ $currencySymbol }}
                                 {{ number_format($totalMonthlyExpenses, 2) }}</div>
@@ -43,7 +33,7 @@
         <!-- Expenses (Annual) -->
         <div class="col-xl-6 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
+                <div class="card-body" id="annual-expenses-card">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-md font-weight-bold text-success text-uppercase mb-1">
@@ -68,7 +58,7 @@
     <!-- User Expense Summary Card -->
     <div class="col-xl-5 col-md-6 mb-4">
         <div class="card border-bottom-info shadow h-100 py-2">
-            <div class="card-body">
+            <div class="card-body" id="summary-card">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                           <div class="text-md font-weight-bold text-info text-uppercase mb-1">Expense Summary</div>
@@ -92,7 +82,7 @@
     <!-- Goal card -->
     <div class="col-xl-7 col-md-6 mb-4">
             <div class="card border-bottom-primary shadow h-100 py-2">
-                <div class="card-body">
+                <div class="card-body" id="goal-card">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             @if($goal)
@@ -143,6 +133,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-xl-4 col-lg-7">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -159,4 +150,9 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <script src="{{ asset('sb-admin-2/js/demo/chart-bar-demo.js') }}"></script>
+        <script src="{{ asset('sb-admin-2/js/demo/chart-pie-demo.js') }}"></script>
+    @endpush
 @endsection
