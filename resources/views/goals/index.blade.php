@@ -45,7 +45,7 @@
                             <form action="{{ route('goals.destroy', $goal->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Do you really want to delete the Goal: {{$goal->target_amount}}?')">Delete</button>
                             </form>
                         </div>
                     </div>

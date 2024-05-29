@@ -42,7 +42,7 @@
                                     <form action="{{ route('expenses.destroy', $expense) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Do you really want to delete {{$expense->description}} ({{$expense->date}})?')">Delete</button>
                                     </form>
                                 </td>
                             </tr>
