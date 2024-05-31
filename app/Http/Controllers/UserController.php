@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Currency;
 use App\Models\User;
+use Couchbase\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,12 +14,18 @@ class UserController extends Controller
     public function show()
     {
         $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('login')->withErrors(['message' => 'You must be logged in to view this page.']);
+        }
         return view('user.index', ['user' => $user]);
     }
 
     public function edit(User $user)
     {
         $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('login')->withErrors(['message' => 'You must be logged in to view this page.']);
+        }
         $currencies = Currency::all();
         return view('user.edit', ['user' => $user, 'currencies' => $currencies]);
     }
@@ -26,6 +33,9 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('login')->withErrors(['message' => 'You must be logged in to view this page.']);
+        }
         $request->validate([
            'name' => 'required|string|max:255',
            'email' => 'required|string|email|max:255',
@@ -59,9 +69,10 @@ class UserController extends Controller
         return redirect()->route('profile.show')->with('success', 'Profile updated sucessfully');
     }
 
-    public function destroy()
+    public function destroy(User $user)
     {
-        // cant destory user can we
+        $user->delete();
+        return redirect()->route('login')->with('success', 'Account deleted successfully');
     }
 
 }

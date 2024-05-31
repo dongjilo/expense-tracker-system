@@ -17,14 +17,12 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/fetch-total-monthly-expenses', [DashboardController::class, 'fetchTotalMonthlyExpenses'])->name('dashboard.fetchTotalMonthlyExpenses');
-    Route::get('/dashboard/fetch-goal', [DashboardController::class, 'fetchGoal'])->name('dashboard.fetchGoal');
-    Route::get('/dashboard/fetch-monthly-expenses', [DashboardController::class, 'fetchMonthlyExpenses'])->name('dashboard.fetchMonthlyExpenses');
-    Route::get('/dashboard/fetch-user-category-expenses', [DashboardController::class, 'fetchUserCategoryExpenses'])->name('dashboard.fetchUserCategoryExpenses');
 
     Route::get('/profile', [UserController::class, 'show'])->name('profile.show');
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [UserController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/delete/{user}', [UserController::class, 'destroy'])->name('profile.destroy');
+
 
     Route::resource('expenses', ExpenseController::class)->except(['show']);
     Route::resource('categories',CategoryController::class)->except('show');
