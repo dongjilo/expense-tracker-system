@@ -1,4 +1,4 @@
-# BudgetBuddy - An Advanced Expense Tracker System
+# BudgetBuddy: An Advanced Expense Tracker System
 
 A simple expense tracker system built with Laravel, designed to help users manage their finances by tracking expenses and setting budgets.
 
